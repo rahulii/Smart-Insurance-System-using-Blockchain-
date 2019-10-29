@@ -4,10 +4,10 @@ import { Redirect } from 'react-router-dom';
 class Buy extends Component {
     render(){
         if (this.props.redirect )
-            return (<Redirect to = "/"/>)
+            return (<Redirect to = "/myaccount"/>)
         return(
             <div className="container">
-           <a class="btn btn-primary" href="/" role="button">Back</a>
+           <a class="btn btn-primary" href="/main" role="button">Back</a>
           
           { this.props.products.map((product,key) => {
             return(
@@ -22,16 +22,8 @@ class Buy extends Component {
             <p>Price : {window.web3.utils.fromWei(product.price.toString(), 'Ether')} Eth</p>
             </div>
             <div class="card-action">
-             <button className="btn btn-primary"
-                          name={product.id}
-                          value={product.price}
-                          onClick={(event) => {
-                            this.props.purchaseProduct(event.target.name, event.target.value)
-                          }}
-                        >
-                          Buy
-              </button>
-              </div>      
+            <a href={'/purchase/' + product.id + "/" + product.price }>Buy Now</a>
+            </div>      
             
             
           </div>

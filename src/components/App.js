@@ -8,8 +8,13 @@ import Main from './Main';
 import { BrowserRouter,Route} from 'react-router-dom';
 import MyAccount from './MyAccount';
 import Buy from './Buy';
-import { Redirect } from 'react-router-dom';
+import Regsiter from './Register';
 import { withRouter } from 'react-router-dom';
+import Login from './Login';
+import Header from './Header';
+import Claim from './Claim';
+import Police from './Police';
+
 class App extends Component {
 
   async componentWillMount(){
@@ -124,7 +129,7 @@ class App extends Component {
                   ) :
                    (
                 <div>
-                <Route exact path="/" render={(props) => <Main {...props} account = {this.state.account} 
+                <Route exact path="/main" render={(props) => <Main {...props} account = {this.state.account} 
                 products = {this.state.products}
                 createProduct = {this.createProduct}
                 purchaseProduct= {this.purchaseProduct}
@@ -136,7 +141,17 @@ class App extends Component {
                 createProduct = {this.createProduct}
                 purchaseProduct= {this.purchaseProduct}
                 redirect = { this.state.redirect } /> } />
-                
+                <Route exact path = "/register" render={(props) => <Regsiter {...props}  account = { this.state.account } /> } />
+                <Route exact path = "/" component = {Login} />
+
+                <Route path = "/purchase/:id/:price" render={(props) => <Header {...props}
+                purchaseProduct= {this.purchaseProduct}
+                redirect = { this.state.redirect } /> } />
+
+                <Route exact path = "/claim/:name" render={(props) => <Claim {...props} account = { this.state.account } /> } />
+
+                <Route exact path = "/police" render={(props) => <Police {...props} account = { this.state.account } /> } />
+
                 </div>  
               )
 

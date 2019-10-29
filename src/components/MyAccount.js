@@ -6,7 +6,7 @@ class MyAccount extends Component {
     render() {
         return(
             <div>
-            <a class="btn btn-primary" href="/" role="button">Back</a>
+            <a class="btn btn-primary" href="/main" role="button">Back</a>
                 <h2>Purchased Insurance</h2>
                 { this.props.products.map((product,key) => {
             return(
@@ -21,15 +21,7 @@ class MyAccount extends Component {
                 <p>Price : {window.web3.utils.fromWei(product.price.toString(), 'Ether')} Eth</p>
                 </div>
                 <div class="card-action">
-                <button className="btn btn-primary"
-                          name={product.id}
-                          value={product.price}
-                          onClick={(event) => {
-                            this.props.purchaseProduct(event.target.name, event.target.value)
-                          }}
-                        >
-                          Claim
-              </button>
+                <a href={ '/claim/' + product.name }>Claim</a>
               </div>      
             
             
