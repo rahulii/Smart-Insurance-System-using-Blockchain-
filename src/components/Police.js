@@ -3,24 +3,27 @@ import axios  from 'axios';
 class Police extends Component {
     state = {
         account:'',
-        claims:[]
+        claims:[],
+        fileNo:'',
     }
-    handleFormSubmit( event,id ) {
-        event.preventDefault();
+    handleFormSubmit( event,id,owner,pname ) {
+        console.log(id);
+         event.preventDefault();
         let formData = new FormData();
-        formData.append('pname', this.props.match.params.name) 
-        formData.append('owner', this.props.account)
-        formData.append('description', this.state.description) 
+        formData.append('id', id)
+        formData.append('owner', owner)
+        formData.append('pname', pname) 
+        formData.append('fileNo', this.state.fileNo) 
         axios({
             method: 'POST',
-            url: 'http://localhost/claims.php',
+            url: 'http://localhost/seller.php',
             data: formData,
             config: { headers: {'Content-Type': 'multipart/form-data' }}
         })
         .then((response) => {
             //handle success
             console.log(response);
-            this.props.history.push("/main")       
+            this.props.history.push("/police")       
         })
         .catch(function (response) {
             //handle error
@@ -68,10 +71,14 @@ class Police extends Component {
                             <br/>
                             Description : {claim.description}
                             <br/>
+                            File Number :
+                            <input type = "text" 
+                            onChange={e => this.setState({ fileNo : e.target.value })} />
                             <button type="button" class="btn btn-info"
-                            onClick={e => this.handleFormSubmit(e,{claim.id})}>
+                            onClick={e => this.handleFormSubmit(e,claim.id,claim.owner,claim.pname)}>
                             Accept</button>
                             <button type="button" class="btn btn-danger">Reject</button>
+                            
                             </div>
                         </div>)
                         })}

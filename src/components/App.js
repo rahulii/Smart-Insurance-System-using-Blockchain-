@@ -14,7 +14,7 @@ import Login from './Login';
 import Header from './Header';
 import Claim from './Claim';
 import Police from './Police';
-
+import Final  from "./Final";
 class App extends Component {
 
   async componentWillMount(){
@@ -151,7 +151,8 @@ class App extends Component {
                 <Route exact path = "/claim/:name" render={(props) => <Claim {...props} account = { this.state.account } /> } />
 
                 <Route exact path = "/police" render={(props) => <Police {...props} account = { this.state.account } /> } />
-
+                
+                <Route exact path ="/reimburse" component = {Final} />
                 </div>  
               )
 

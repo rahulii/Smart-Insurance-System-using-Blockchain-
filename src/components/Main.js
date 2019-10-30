@@ -39,6 +39,7 @@ class Main extends Component {
         </div>
         <button type="submit" className="btn btn-primary">Add Product</button>
         </form>
+        <a href="/reimburse">View Pending Claims</a>
         </div>
         ) : (
           <div class="row">
