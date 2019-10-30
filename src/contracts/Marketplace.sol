@@ -82,8 +82,27 @@ contract Marketplace{
         emit productPurchased(productCount,_product.name,_product.price,msg.sender,true);
     }
 
+    function reimburse(uint _id) public payable {
+        //fetch the product
+        Product memory _product = products[_id];
+        //fetch the owner
+        address payable _seller = msg.sender; 
+        //make sure product is valid
+        //require(_product.id > 0 && _product.id <= productCount);
+        // Require that there is enough Ether in the transaction
+        //require(msg.value >= _product.price);
+        // Require that the product has not been purchased already
+        //require(_product.purchased);
+        // Require that the buyer is not the seller
+        //require(_seller != msg.sender);
+
+        //update the product    
+        //pay the seller by sending them ether
+        address(_product.owner).transfer(msg.value);
+    
 
 
 
+    }
 
 }

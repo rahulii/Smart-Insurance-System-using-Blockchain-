@@ -69,7 +69,7 @@ class App extends Component {
       }
       
       this.setState({ loading : false })
-      //console.log(marketplace)
+      console.log(this.state.products)
     }
   }
 
@@ -83,6 +83,7 @@ class App extends Component {
     }
     this.createProduct = this.createProduct.bind(this)
     this.purchaseProduct = this.purchaseProduct.bind(this)
+    this.reimburse = this.reimburse.bind(this)
   }
   createProduct(name,price){
     this.setState({ loading:true })
@@ -97,6 +98,15 @@ class App extends Component {
   purchaseProduct(id,price){
     this.setState({ loading:true })
     this.state.marketplace.methods.purchaseProduct(id).send({ from : this.state.account , value:price })
+    .then(() => {
+      this.setState({ loading : false })
+      this.setState({ redirect :true })
+    })
+    
+  }
+  reimburse(id,price){
+    this.setState({ loading:true })
+    this.state.marketplace.methods.reimburse(id).send({ from : this.state.account , value:price })
     .then(() => {
       this.setState({ loading : false })
       this.setState({ redirect :true })
@@ -152,7 +162,8 @@ class App extends Component {
 
                 <Route exact path = "/police" render={(props) => <Police {...props} account = { this.state.account } /> } />
                 
-                <Route exact path ="/reimburse" component = {Final} />
+                <Route exact path ="/reimburse" render={(props) => <Final {...props} account = { this.state.account }
+                reimburse = { this.reimburse } /> } />
                 </div>  
               )
 

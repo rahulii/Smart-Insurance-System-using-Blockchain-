@@ -6,6 +6,7 @@ class Header extends Component {
         var price,id;
         id = this.props.match.params.id;
         price = this.props.match.params.price;
+        console.log(price);
         return(
             <form>
                 <div class="form-group">

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios  from 'axios';
 
 class Final extends Component{
+    
     state = {
         claims : []
     }
@@ -38,8 +39,22 @@ class Final extends Component{
                     <div>
                         Owner : {claim.owner}
                     </div>
-                    <div>
-                        <button>Reimburse</button>
+                    <div className="form-group mr-sm-2">
+                       <form onSubmit = {(event) => {
+                        event.preventDefault()
+                        const price = window.web3.utils.toWei(this.productPrice.value.toString(), 'Ether')
+                        this.props.reimburse(claim.id,price)
+                    }}> 
+                <input
+              id="productPrice"
+              type="text"
+              ref={(input) => { this.productPrice = input }}
+              className="form-control"
+              placeholder="Reimbursement Price"
+              required />
+                        <button type="submit">Reimburse</button>
+                    
+                    </form>
                     </div>
                     </div>
                     )

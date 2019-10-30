@@ -4,9 +4,12 @@ class Main extends Component {
 
   render() {
     console.log(this.props.products);
-    var seller;
+    var seller,police;
     seller = this.props.account == '0xF4EE82A8f98a92d328D63F60c4a6a6f8646Ab985' ? true : false;
+    police = this.props.account == '0x67aEd35AB4A13EF0470f310487eA540A2566A861' ? true : false;
     console.log(seller)
+    if(police)
+      this.props.history.push("/police")
     return (
     <div id="content">
       {seller ? (

@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom';
 class MyAccount extends Component {
 
     render() {
+      console.log(this.props.products);
         return(
             <div>
             <a class="btn btn-primary" href="/main" role="button">Back</a>
